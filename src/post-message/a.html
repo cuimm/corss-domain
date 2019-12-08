@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>A</title>
+</head>
+<body>
+    a.html
+    <iframe id="iframe"
+            src="http://127.0.0.1:1002/src/post-message/b.html"
+            style="display: none"
+    ></iframe>
+    <script>
+        iframe.onload = function() {
+            iframe.contentWindow.postMessage('postMessage 跨域测试', 'http://127.0.0.1:1002/')
+        }
+        // 反监听 b.html 传递过来的message
+        window.onmessage = function (ev) {
+          console.log(ev.data);
+        }
+    </script>
+
+</body>
+</html>

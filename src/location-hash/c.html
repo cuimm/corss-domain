@@ -1,0 +1,18 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>c</title>
+</head>
+<body>
+  <script>
+    // => 监听 b.html 传递来的 hash 值
+    window.onhashchange = function () {
+      // => 再通过操作同域下的 a.html 的JS回调，将结果传回
+      window.parent.parent.func(location.hash);
+    }
+  </script>
+</body>
+</html>

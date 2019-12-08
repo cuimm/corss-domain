@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>B</title>
+</head>
+<body>
+b.html
+<script>
+  // 监听 a.html 传递过来的message
+  window.onmessage = function (ev) {
+    console.log('b.html:', ev.data);
+    // ev.source => a.html
+    ev.source.postMessage('1.传递给a.html：' + ev.data, ev.origin)
+    ev.source.postMessage('2.传递给a.html：' + ev.data, 'http://127.0.0.1:1001/')
+  }
+</script>
+</body>
+</html>

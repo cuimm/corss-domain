@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CORS</title>
+</head>
+
+<body>
+    <script src="../../node_modules/axios/dist/axios.js"></script>
+    <script>
+        // axios全局配置
+        axios.defaults.baseUrl = 'http://127.0.0.1:3001'
+        axios.defaults.withCredentials = true;
+        axios.defaults.headers['content-type'] = 'application/x-www-form-urlencoded';
+        axios.defaults.transformRequest = function (data) {
+            if (!data) return data;
+            let result = ``;
+            for (let attr in data) {
+                if (!data.hasOwnProperty(attr))
+                    break;
+                result += `&$(attr)=${data[attr]}`;
+            }
+            return result.substring(1);
+        }
+        axios.interceptors.response.use(function onFulfilled(response) {
+            return response.data;
+        }, function onRejected(reason) {
+            return Promise.reject(reason)
+        });
+        // 校验返回状态码
+        axios.defaults.validateStatus = function(status) {
+            return /^(2|3)\d{2}$/.test(status)
+        }
+        // 发送跨域请求
+        axios.get(axios.defaults.baseUrl + '/user/list')
+            .then(res => {
+                console.log(res);
+            });
+    </script>
+</body>
+
+</html>

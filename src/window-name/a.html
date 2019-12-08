@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>a</title>
+</head>
+<body>
+  <iframe id="myIFrame" src="http://127.0.0.1:1002/src/window-name/b.html" style="display: none"></iframe>
+
+  <script>
+    let count = 0;
+    myIFrame.onload = function () {
+      if (count === 0) {
+        // => 我们需要先把地址重新指向同源中（空代理）
+        myIFrame.src = 'http://127.0.0.1:1001/src/window-name/proxy.html';
+        count ++;
+        return;
+      }
+      // 我们在proxy.html 页面中没有指定 window.name，这样我们通过下面方式获取到的依旧是 b.html 的name
+      console.log(myIFrame.contentWindow.name);
+
+      // 直接按照下面方式获取 b.html 的name值，会报跨域错误
+      // console.log(myIFrame.contentWindow.name);
+    }
+  </script>
+
+</body>
+</html>

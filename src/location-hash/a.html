@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>a</title>
+</head>
+<body>
+<iframe id="iframe" src="http://127.0.0.1:1002/src/location-hash/b.html" style="display: none"></iframe>
+<script>
+  const data = {
+    name: 'cuimm',
+    age: 18,
+    address: 'BeiJing',
+  }
+  // => 向 b.html 传递hash值
+  iframe.onload = function () {
+    iframe.src = 'http://127.0.0.1:1002/src/location-hash/b.html#msg=' + JSON.stringify(data);
+  }
+
+  function func(data) {
+    console.log('data:', data);
+    // data: #msg={%22name%22:%22cuimm%22,%22age%22:18,%22address%22:%22BeiJing%22}
+  }
+</script>
+</body>
+</html>

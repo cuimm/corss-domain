@@ -1,0 +1,18 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>b</title>
+</head>
+<body>
+  <iframe id="iframe" src="http://127.0.0.1:1001/src/location-hash/c.html" style="display: none"></iframe>
+  <script>
+    // => 监听 A 传递过来的 HASH 值，如果有改变传递给 c.html
+    window.onhashchange = function () {
+      iframe.src = 'http://127.0.0.1:1001/src/location-hash/c.html'+location.hash;
+    }
+  </script>
+</body>
+</html>
