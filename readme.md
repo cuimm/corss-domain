@@ -33,5 +33,31 @@
 
 
  
+复杂请求：
+当满足以下条件时，浏览器主动触发OPTIONS请求（复杂请求）：
+1、使用了下面任一 HTTP 方法：
+  – PUT
+  – DELETE
+  – CONNECT
+  – OPTIONS
+  – TRACE
+  – PATCH
+2、人为设置了对 CORS 安全的首部字段集合之外的其他首部字段。该集合为：
+  – Accept
+  – Accept-Language
+  – Content-Language
+  – Content-Type (but note the additional requirements below)
+  – DPR
+  – Downlink
+  – Save-Data
+  – Viewport-Width
+  – Width
+
+3、 Content-Type 的值不属于下列之一:
+  – application/x-www-form-urlencoded
+  – multipart/form-data
+  – text/plain
+
+否则：简单请求
 
 
