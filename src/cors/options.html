@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CORS</title>
+</head>
+
+<body>
+<script src="../../node_modules/axios/dist/axios.js"></script>
+<script>
+  /******************** 模拟OPTIONS跨域请求 ********************/
+  axios.defaults.baseUrl = 'http://127.0.0.1:3001';
+  // 自定义请求头：X-Custom-Header-Cuimm，自定义请求头，此时属于非简单请求
+  // 非简单请求，浏览器会首先进行一个OPTIONS请求（预检请求）询问跨域是否被允许
+  // 这时需服务端配合，当服务器返回允许的请求头（Access-Control-Allow-Headers ）中包含 X-Custom-Header-Cuimm 时，请求才会被允许。
+  axios.defaults.headers = {
+    'Content-Type': 'application/json; charset=utf-8',
+    'X-Custom-Header-Cuimm': 'username',
+  };
+  // 主要解决 Content-Type 写入不到headers的问题
+  axios.defaults.transformRequest = [function (params) {
+    return params == null ? '' : JSON.stringify(params)
+  }];
+
+  // get 请求
+  axios.get(axios.defaults.baseUrl + '/user/list')
+    .then(res => {
+      console.log(res);
+    })
+
+  // post请求
+  axios({
+    url: axios.defaults.baseUrl + '/user/modify',
+    method: 'post',
+  }).then(res => {
+    console.log(res);
+  });
+
+</script>
+</body>
+
+</html>
