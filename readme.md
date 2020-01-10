@@ -32,7 +32,9 @@
 ### location.hash + iframe
 
 
- 
+分界线 
+
+
 ### 复杂请求：
 当满足以下条件时，浏览器主动触发OPTIONS请求（复杂请求）：
 1、使用了下面任一 HTTP 方法（非HEAD、GET、POST请求）：
