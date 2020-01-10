@@ -33,9 +33,9 @@
 
 
  
-复杂请求：
+### 复杂请求：
 当满足以下条件时，浏览器主动触发OPTIONS请求（复杂请求）：
-1、使用了下面任一 HTTP 方法：
+1、使用了下面任一 HTTP 方法（非HEAD、GET、POST请求）：
   – PUT
   – DELETE
   – CONNECT
@@ -58,6 +58,6 @@
   – multipart/form-data
   – text/plain
 
-否则：简单请求
+### 否则：简单请求
 
 

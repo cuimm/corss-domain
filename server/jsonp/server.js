@@ -1,7 +1,7 @@
 let express = require('express'),
     app = express();
 
-app.listen(3000, _ => {
+app.listen(3001, _ => {
     console.log('server ok!')
 });
 
