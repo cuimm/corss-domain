@@ -1,10 +1,10 @@
-### JSONP
-### CORS
-### webpack-dev-server 
-### nginx反向代理
-### postMessage
-### socket.io
-### document.domin + iframe
+### 1、JSONP
+### 2、CORS
+### 3、webpack-dev-server 
+### 4、nginx反向代理
+### 5、postMessage
+### 6、socket.io
+### 7、document.domin + iframe
 只能实现 同一个主域，不同子域之间的操作
 
 例如：用这一方法，可以从 v.qq.com 向 sports.qq.com 发送请求，但是不可以向 weixin.com 发送请求。
