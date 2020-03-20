@@ -14,5 +14,7 @@ app.get('/user/info', (req, res) => {
         }
     }
     res.send(`${callback}(${JSON.stringify(data)})`)
+    // JSONP 不安全
+    // res.send(`${callback}(document.body.removeChild(document.getElementById('app')))`)
 })
 
