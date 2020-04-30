@@ -43,3 +43,27 @@ JSONP({
 }).then(res => {
   console.log('2、手动实现JSONP', res);
 })
+
+function JSONP2(options) {
+  let {url, params} = options
+
+  return new Promise((resolve, reject) => {
+    const callback = `JSONP_${new Date().valueOf()}`
+
+    const paramsArr = []
+    params = {...params, callback}
+    Object.keys(params).forEach(param => {
+      paramsArr.push(`${param}=${params[param]}`)
+    })
+
+    const element = document.createElement('script')
+    // element.src = `${url}${urlParams}`
+    element.src = `${url}?${paramsArr.join('&')}`
+    document.body.appendChild(element)
+
+    window[callback] = (data) => {
+      resolve(data)
+      document.body.removeChild(element)
+    }
+  })
+}
