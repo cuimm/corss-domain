@@ -67,3 +67,34 @@ function JSONP2(options) {
     }
   })
 }
+
+
+JSONP3({
+  url: 'http://127.0.0.1:3001/user/info',
+  params: {
+    id: 123,
+    name: 'cuimm'
+  },
+}).then(res => {
+  console.log('JSONP返回的数据', res);
+})
+
+function JSONP3({url, params} = {}) {
+  return new Promise((resolve, reject) => {
+
+    const callback = `__${new Date().getTime()}`
+
+    const qs = Object.keys(params).map(paramKey => {
+      return `${paramKey}=${params[paramKey]}`
+    }).join('&')
+
+    const script = document.createElement('script')
+    script.src = `${url}?callback=${callback}&${qs}`
+    document.body.appendChild(script)
+
+    window[callback] = data => {
+      document.body.removeChild(script)
+      resolve(data)
+    }
+  })
+}
